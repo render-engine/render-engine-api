@@ -13,8 +13,10 @@ dependencies = [
   "toml>=0.10.2"
 ]
 
+[dependency-groups]
 dev = [
     "pytest",
     "pytest-cov",
     "ty",
+    "deptry"
 ]

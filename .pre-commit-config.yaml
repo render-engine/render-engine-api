@@ -24,3 +24,11 @@ repos:
   rev: v0.6.0
   hooks:
     - id: markdownlint-cli2
+- repo: local
+  hooks:
+    - id: deptry
+      name: deptry
+      entry: uv run deptry .
+      language: system
+      always_run: true
+      pass_filenames: false
