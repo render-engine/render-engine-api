@@ -10,10 +10,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
 dependencies = [
-    "render-engine",
-    "python-slugify",
-    "python-frontmatter",
-    "python-dateutil",
+  "toml>=0.10.2"
 ]
 
 dev = [
