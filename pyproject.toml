@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=75.0", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "render-engine-api"
+dynamic = ["version"]
+description = "Shared API layer for render-engine CLI, TUI, and other tools"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = [
+  "toml>=0.10.2"
+]
+
+dev = [
+    "pytest",
+    "pytest-cov",
+    "ty",
+]
