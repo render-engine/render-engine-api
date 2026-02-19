@@ -1,10 +1,10 @@
 # Render Engine API - Feature Consolidation Plan
 
-A unifying api for managing and working with [render-engine](https://github.com/render-engine/render-rengine).
+A unifying api for managing and working with [render-engine][render-engine].
 
 ## Overview
 
-The [CLI](https://github.com/render-engine/render-engine-cli), [TUI](https://github.com/render-engine/render-engine-tui), and custom tools can use this module as a shared API layer. This allows us to: 
+The [CLI][cli], [TUI][tui], and custom tools can use this module as a shared API layer. This allows us to:
 
 - **Reduce Duplication**: Single source of truth for common operations
 - **Improve Maintainability**: Fix bugs and add features in one place
@@ -14,7 +14,7 @@ The [CLI](https://github.com/render-engine/render-engine-cli), [TUI](https://git
 
 ## Installation
 
-Install `render-engine-api` using [uv](https://docs.astral.sh/uv/):
+Install `render-engine-api` using [uv][uv]:
 
 ```bash
 uv add render-engine-api
@@ -25,3 +25,8 @@ For development:
 ```bash
 uv sync --dev
 ```
+
+[render-engine]: https://github.com/render-engine/render-rengine
+[cli]: https://github.com/render-engine/render-engine-cli
+[tui]: https://github.com/render-engine/render-engine-tui
+[uv]: https://docs.astral.sh/uv/
