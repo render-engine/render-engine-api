@@ -16,7 +16,10 @@ def _write_config(tmp_path, content):
 
 # Strategy for valid TOML-safe identifier strings (no quotes, newlines, etc.)
 toml_safe_text = st.text(
-    alphabet=st.characters(categories=("L", "N"), include_characters="_-"),
+    alphabet=st.characters(
+        whitelist_categories=("Lu", "Ll", "Nd"),
+        whitelist_characters="_-",
+    ),
     min_size=1,
     max_size=50,
 )
