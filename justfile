@@ -1,0 +1,81 @@
+# Render Engine API - Just recipes
+# Run tasks with: just <task-name>
+
+DEFAULT_PYTHON_VERSION := "3.14"
+
+# Default recipe to display available commands
+default:
+    @just --list
+
+# Sync dependencies using uv
+sync:
+    uv sync --dev
+
+# Run pytest
+test *FLAGS='':
+    pytest {{ DEFAULT_PYTHON_VERSION }} {{ FLAGS }}
+
+# Install pre-commit hooks
+pre-commit-install:
+    uvx pre-commit install
+
+# Run pre-commit on all files
+pre-commit:
+    uvx pre-commit run --all-files
+
+# Run pre-commit on staged files (default git behavior)
+pre-commit-run:
+    uvx pre-commit run
+
+# Update pre-commit hook versions
+pre-commit-update:
+    uvx pre-commit autoupdate
+
+# Run tests in arbitrary Python version.
+pytest VERSION *FLAGS='':
+    uv run -p {{ VERSION }} --dev pytest {{ FLAGS }}
+
+# Run pytest with coverage report (defaults to XML)
+test-cov-report REPORT='xml':
+    uv run --dev pytest --cov-report={{ REPORT }}
+
+# Run all nox sessions
+nox:
+    uvx nox
+
+# Run ruff linter without fixing
+lint DIRECTORY='.':
+    uvx ruff check {{ DIRECTORY }}
+
+# Run ruff linter with auto-fix
+lint-fix DIRECTORY='.':
+    uvx ruff check --fix {{ DIRECTORY }}
+
+# Run ruff formatter as check
+format DIRECTORY='.':
+    uvx ruff format --check {{ DIRECTORY }}
+
+# Run ruff formatter and fix issues
+format-fix DIRECTORY='.':
+    uvx ruff format --check {{ DIRECTORY }}
+
+ruff: lint format
+
+# Run both linter and formatter, fixing issues.
+ruff-fix DIRECTORY='.':
+    @# Prefacing with `-` to ignore any errors that might be fixed by formatting.
+    -uvx ruff check --fix {{ DIRECTORY }}
+    uvx ruff format {{ DIRECTORY }}
+    uvx ruff check {{ DIRECTORY }}
+    @echo "\nEverything looks good!"
+
+# Run ty type checker
+ty PATH='src':
+    uv run ty check {{ PATH }} # For the moment we have way too many issues in ty so not having it fail.
+
+# Generate coverage badge
+badge: (test-cov-report 'xml')
+    uvx --with "genbadge[coverage]" genbadge coverage -i coverage.xml
+
+# Run full CI workflow (sync, lint, test, badge)
+ci: sync nox ruff ty badge

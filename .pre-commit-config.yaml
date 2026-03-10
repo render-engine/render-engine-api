@@ -1,34 +1,34 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
     hooks:
-    -   id: check-yaml
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  # Ruff version.
-  rev: v0.15.1
-  hooks:
-    # Run the linter.
-    - id: ruff-check
-      args: [ --fix ]
-    # Run the formatter.
-    - id: ruff-format
-- repo: https://github.com/allganize/ty-pre-commit
-  # Ty version.
-  rev: v0.0.17
-  hooks:
-    # Run the type checker.
-    - id: ty-check
-- repo: https://github.com/DavidAnson/markdownlint-cli2
-  rev: v0.6.0
-  hooks:
-    - id: markdownlint-cli2
-- repo: local
-  hooks:
-    - id: deptry
-      name: deptry
-      entry: uv run deptry .
-      language: system
-      always_run: true
-      pass_filenames: false
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.15.4
+    hooks:
+      # Run the linter.
+      - id: ruff-check
+        args: [--fix]
+      # Run the formatter.
+      - id: ruff-format
+  - repo: https://github.com/allganize/ty-pre-commit
+    # Ty version.
+    rev: v0.0.20
+    hooks:
+      # Run the type checker.
+      - id: ty-check
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.21.0
+    hooks:
+      - id: markdownlint-cli2
+  - repo: local
+    hooks:
+      - id: deptry
+        name: deptry
+        entry: uv run deptry .
+        language: system
+        always_run: true
+        pass_filenames: false
