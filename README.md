@@ -26,7 +26,7 @@ For development:
 uv sync --dev
 ```
 
-[render-engine]: https://github.com/render-engine/render-rengine
+[render-engine]: https://github.com/render-engine/render-engine
 [cli]: https://github.com/render-engine/render-engine-cli
 [tui]: https://github.com/render-engine/render-engine-tui
 [uv]: https://docs.astral.sh/uv/
